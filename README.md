@@ -11,7 +11,7 @@ A utility to use a series of different convolutional blocks.
 1- tensorflow
 
 
-## Import the Model Class and Create and Instance with Desired Settings.
+## Import the Model Class and Create an Instance with Desired Settings.
 ```python
 import FlexibleNN
 flexnn = FlexibleNN(input_shape=(112, 112, 3), width=3, conv_blocks=3,
@@ -25,7 +25,7 @@ flexnn = FlexibleNN(input_shape=(112, 112, 3), width=3, conv_blocks=3,
 ```
 
 
-## Build the model. Custom Configs Can be Achieved by Editing the build_model Function.
+## Build the Model. Custom Configs Can be Achieved by Editing the build_model Function.
 ```python
 model = flexnn.build_model()
 print(model.summary())
