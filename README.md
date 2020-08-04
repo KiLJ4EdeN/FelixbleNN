@@ -26,21 +26,6 @@ flexnn = FlexibleNN(input_shape=(112, 112, 3), width=3, conv_blocks=3,
 
 
 ## Build the model. Custom Configs Can be Achieved by Editing the build_model Function.
-
-```bash
-git clone https://github.com/KiLJ4EdeN/COVID_WEB
-cd COVID_WEB
-python3 create_dataset.py
-python3 extract_features.py
-python3 server.py
-```
-The ngrok host url should be displayed.
-
-Note that you can comment out flask ngrok if you dont have an internet connection.
-
-
-## Additional utils
-### These let you see the classification metrics, or get new parameters with bayesian optimization.
 ```python
 model = flexnn.build_model()
 print(model.summary())
