@@ -1,3 +1,7 @@
+import tensorflow as tf
+import operator
+from tensorflow.keras.constraints import max_norm
+
 class FlexibleNN:
   def __init__(self, input_shape=(64, 64, 1), width=3, conv_blocks=2,
                dense_blocks=1, classes=1,
@@ -40,14 +44,10 @@ class FlexibleNN:
 
   def build_model(self):
     # do a combination of blocks here.
-    # x = self.__identity_block(self.input)
-    # x = self.__parallel_block(self.input)
-    x = self.__conv_block(self.input, 1)
-    x = tf.keras.layers.Flatten()(x)
-    # input must be flattened before this part.
+    x = self.__parallel_block(self.input)
     x = self.__dense_block(x)
+    x = self.__classification_block(x)
     self.output = x
-    # self.output = self.__classification_block(x)
     self.model = tf.keras.models.Model(inputs=self.input,
                                   outputs=self.output)
     return self.model
