@@ -65,29 +65,30 @@ class FlexibleNN:
     # residual block.
     x_shortcut = x
     # Path 1
-    x = tensorflow.keras.layers.Conv2D(F1, (1, 1), strides = (2, 2))(X)
-    x = tensorflow.keras.layers.BatchNormalization()(x)
-    x = tensorflow.keras.layers.Activation(self.activation)(x)
+    x = tf.keras.layers.Conv2D(self.filter_start*1,
+                                       (1, 1), strides = (2, 2))(X)
+    x = tf.keras.layers.BatchNormalization()(x)
+    x = tf.keras.layers.Activation(self.activation)(x)
     # Path 2
-    x = tensorflow.keras.layers.Conv2D(filters = self.filter_start*1,
+    x = tf.keras.layers.Conv2D(filters = self.filter_start*1,
                                        kernel_size = self.filter_size, 
                                        strides = (1,1), padding = 'same')(X)
-    x = tensorflow.keras.layers.BatchNormalization()(x)
-    x = tensorflow.keras.layers.Activation(self.activation)(X)
+    x = tf.keras.layers.BatchNormalization()(x)
+    x = tf.keras.layers.Activation(self.activation)(X)
     # Path 3
-    x = tensorflow.keras.layers.Conv2D(filters = self.filter_start*2,
+    x = tf.keras.layers.Conv2D(filters = self.filter_start*2,
                                        kernel_size = (1, 1),
                                        strides = (1,1), padding = 'valid')(X)
-    x = tensorflow.keras.layers.BatchNormalization()(x)
+    x = tf.keras.layers.BatchNormalization()(x)
     # Shortcut
-    x_shortcut = tensorflow.keras.layers.Conv2D(filters = self.filter_start*2,
+    x_shortcut = tf.keras.layers.Conv2D(filters = self.filter_start*2,
                                                 kernel_size = (1, 1),
                                                 strides = (2, 2),
                                                 padding = 'valid')(x_shortcut)
-    x_shortcut = tensorflow.keras.layers.BatchNormalization()(x_shortcut)
+    x_shortcut = tf.keras.layers.BatchNormalization()(x_shortcut)
     # Final Path.
-    x = tensorflow.keras.layers.Add()([x, x_shortcut])
-    x = tensorflow.keras.layers.Activation(self.activation)(x)
+    x = tf.keras.layers.Add()([x, x_shortcut])
+    x = tf.keras.layers.Activation(self.activation)(x)
     return x
 
   def __identity_block(self, x):
