@@ -13,7 +13,7 @@ A utility to use a series of different convolutional blocks.
 
 ## Import the Model Class and Create an Instance with Desired Settings.
 ```python
-import FlexibleNN
+from FlexibleNN import FlexibleNN
 flexnn = FlexibleNN(input_shape=(112, 112, 3), width=3, conv_blocks=3,
                     dense_blocks=2, classes=1,
                     filter_start=16, filter_size=(2, 2), activation='relu',
